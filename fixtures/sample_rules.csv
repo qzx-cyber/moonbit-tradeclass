@@ -1,0 +1,5 @@
+from,to,weight,confidence,reason
+0101,SITC001,0.70,exact,self-authored split fixture
+0101,SITC002,0.30,approximate,self-authored split fixture
+0201,SITC003,1.00,exact,self-authored direct fixture
+MISSING,,0.00,unmappable,retired source fixture
