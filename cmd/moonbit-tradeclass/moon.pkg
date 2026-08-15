@@ -1,0 +1,7 @@
+import {
+  "qzx-cyber/moonbit-tradeclass/src" @tradeclass,
+}
+
+options(
+  "is-main": true,
+)
