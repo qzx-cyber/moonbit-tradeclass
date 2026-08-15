@@ -1,0 +1,131 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "qzx-cyber/moonbit-tradeclass/src"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn active_code_state() -> CodeState
+
+pub fn aggregate(AggregationPlan, Array[TradeRecord]) -> Array[AggregatedRecord]
+
+pub fn aggregation_plan(Int, Bool, Bool) -> AggregationPlan
+
+pub fn approximate_confidence() -> MappingConfidence
+
+pub fn classification_system(String, String) -> ClassificationSystem
+
+pub fn classification_version(ClassificationSystem, String, Int) -> ClassificationVersion
+
+pub fn code_state_is_live(CodeState) -> Bool
+
+pub fn concordance(Array[ConcordanceRule]) -> Concordance
+
+pub fn concordance_rule(String, Array[MappingTarget], MappingConfidence, String) -> ConcordanceRule raise
+
+pub fn confidence_is_usable(MappingConfidence) -> Bool
+
+pub fn exact_confidence() -> MappingConfidence
+
+pub fn map_code(Concordance, String) -> MappingResult
+
+pub fn mapping_result(String, Array[MappingTarget], MappingConfidence, String) -> MappingResult
+
+pub fn mapping_target(String, Double) -> MappingTarget raise
+
+pub fn merged_code_state() -> CodeState
+
+pub fn product_code(ClassificationVersion, String, String, Int, CodeState, String?) -> ProductCode
+
+pub fn retired_code_state() -> CodeState
+
+pub fn split_code_state() -> CodeState
+
+pub fn trade_record(String, Int, String, Double) -> TradeRecord
+
+pub fn unmappable_confidence() -> MappingConfidence
+
+// Errors
+
+// Types and methods
+pub struct AggregatedRecord {
+  country : String
+  year : Int
+  code : String
+  mut amount : Double
+} derive(Eq, @debug.Debug)
+
+pub struct AggregationPlan {
+  level : Int
+  include_country : Bool
+  include_year : Bool
+} derive(Eq, @debug.Debug)
+
+pub struct ClassificationSystem {
+  id : String
+  name : String
+} derive(Eq, @debug.Debug)
+
+pub struct ClassificationVersion {
+  system : ClassificationSystem
+  label : String
+  year : Int
+} derive(Eq, @debug.Debug)
+
+pub enum CodeState {
+  Active
+  Retired
+  Split
+  Merged
+} derive(Eq, @debug.Debug)
+
+pub struct Concordance {
+  rules : Array[ConcordanceRule]
+} derive(@debug.Debug)
+
+pub struct ConcordanceRule {
+  from : String
+  to : Array[MappingTarget]
+  confidence : MappingConfidence
+  reason : String
+} derive(Eq, @debug.Debug)
+
+pub enum MappingConfidence {
+  Exact
+  Approximate
+  Unmappable
+} derive(Eq, @debug.Debug)
+
+pub struct MappingResult {
+  input : String
+  targets : Array[MappingTarget]
+  confidence : MappingConfidence
+  reason : String
+} derive(Eq, @debug.Debug)
+
+pub struct MappingTarget {
+  code : String
+  weight : Double
+} derive(Eq, @debug.Debug)
+
+pub struct ProductCode {
+  version : ClassificationVersion
+  code : String
+  title : String
+  level : Int
+  state : CodeState
+  parent : String?
+} derive(Eq, @debug.Debug)
+
+pub struct TradeRecord {
+  country : String
+  year : Int
+  code : String
+  amount : Double
+} derive(Eq, @debug.Debug)
+
+// Type aliases
+
+// Traits
+
