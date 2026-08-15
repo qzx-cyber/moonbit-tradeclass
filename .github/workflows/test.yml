@@ -1,0 +1,34 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  moonbit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install MoonBit 0.10.3
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+          moon version --all
+      - name: Format and public API check
+        run: |
+          moon fmt --check
+          git diff --exit-code
+          moon info
+          git diff --exit-code
+      - name: Check and test
+        run: |
+          moon check --deny-warn
+          moon test --deny-warn
+          moon check --target native --deny-warn
+          moon test --target native --deny-warn
+      - name: CLI check
+        run: moon run cmd/moonbit-tradeclass --target native
