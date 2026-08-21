@@ -1,34 +1,64 @@
-name: Test
+name: MoonBit checks
 
 on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: moonbit-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  moonbit:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
+  check:
+    name: stable / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
     steps:
-      - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-      - name: Install MoonBit 0.10.3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install MoonBit stable (Unix)
+        if: runner.os != 'Windows'
         run: |
           curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
           echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
           moon version --all
-      - name: Format and public API check
+
+      - name: Install MoonBit stable (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
         run: |
-          moon fmt --check
-          git diff --exit-code
+          irm https://cli.moonbitlang.com/install/powershell.ps1 | iex
+          "$HOME/.moon/bin" | Out-File -FilePath $env:GITHUB_PATH -Append
+          moon version --all
+
+      - name: Format
+        run: moon fmt --check
+
+      - name: Public interface check
+        run: |
           moon info
           git diff --exit-code
-      - name: Check and test
+
+      - name: Type check
+        run: moon check --deny-warn
+
+      - name: WASM tests
+        run: moon test --deny-warn
+
+      - name: Native tests
         run: |
-          moon check --deny-warn
-          moon test --deny-warn
           moon check --target native --deny-warn
           moon test --target native --deny-warn
-      - name: CLI check
+
+      - name: CLI smoke test
         run: moon run cmd/moonbit-tradeclass --target native

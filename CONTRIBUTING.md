@@ -1,3 +1,3 @@
 # Contributing
 
-Use MoonBit 0.10.3 or a newer compatible toolchain. In 0.10.3, formatting and info generation expose their own check/diff workflow, while `check` and `test` accept `--deny-warn`; run `moon fmt --check`, `moon info`, `moon check --deny-warn`, and `moon test --deny-warn`. Keep complete official classification datasets out of the repository unless redistribution rights are documented.
+Use the current MoonBit stable toolchain. Run `moon fmt --check`, `moon info`, `moon check --deny-warn`, `moon test --deny-warn`, and the corresponding native-target checks before opening a change. Keep complete official classification datasets out of the repository unless redistribution rights are documented. New public APIs should have black-box tests and deterministic examples.

@@ -1,7 +1,13 @@
 # Changelog
 
+## 0.2.0 - 2026-08-22
+
+- Added normalization, catalog queries, version diffs, quality audits, descriptive analytics, and deterministic benchmark APIs.
+- Added a 1,400-case boundary corpus and reproducible synthetic benchmark workloads consumed by the CLI and tests.
+- Updated the executable package metadata and stable-toolchain CI across Linux, macOS, and Windows.
+
 ## 0.1.0 - 2026-08-15
 
 - Added classification metadata, weighted concordance rules, cycle-safe conversion, and aggregation primitives.
 - Added self-authored fixtures for splits, merges, cycles, and missing mappings.
-- Added MoonBit 0.10.3 validation workflow and competition proposal materials.
+- Added the initial stable-toolchain validation workflow and project documentation.
