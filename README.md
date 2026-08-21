@@ -86,7 +86,7 @@ moon test --target native --deny-warn
 
 ## CI
 
-GitHub Actions 使用 MoonBit stable 安装器，并执行格式检查、公共接口差异检查、普通/native 类型检查和测试、覆盖率摘要以及 CLI native smoke test。工作流文件位于 `.github/workflows/test.yml`，每次 push 和 pull request 自动运行。
+GitHub Actions 使用 MoonBit stable 安装器，并执行格式检查、公共接口差异检查、全目标类型检查和测试，以及 CLI native smoke test。工作流文件位于 `.github/workflows/test.yml`，每次 push 和 pull request 自动运行。
 
 ## 数据与许可证边界
 

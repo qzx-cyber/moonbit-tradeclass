@@ -31,6 +31,8 @@ jobs:
         run: |
           curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
           echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+          echo "$HOME/.moon-latest/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.moon/bin:$HOME/.moon-latest/bin:$PATH"
           moon version --all
 
       - name: Install MoonBit stable (Windows)
@@ -38,7 +40,8 @@ jobs:
         shell: pwsh
         run: |
           irm https://cli.moonbitlang.com/install/powershell.ps1 | iex
-          "$HOME/.moon/bin" | Out-File -FilePath $env:GITHUB_PATH -Append
+          @("$HOME/.moon/bin", "$HOME/.moon-latest/bin", "C:\Users\runneradmin\.moon\bin", "C:\Users\runneradmin\.moon-latest\bin") | Out-File -FilePath $env:GITHUB_PATH -Append
+          $env:Path = "$HOME\.moon\bin;$HOME\.moon-latest\bin;C:\Users\runneradmin\.moon\bin;C:\Users\runneradmin\.moon-latest\bin;$env:Path"
           moon version --all
 
       - name: Format
@@ -49,16 +52,10 @@ jobs:
           moon info
           git diff --exit-code
 
-      - name: Type check
-        run: moon check --deny-warn
-
-      - name: WASM tests
-        run: moon test --deny-warn
-
-      - name: Native tests
+      - name: All-target type check and tests
         run: |
-          moon check --target native --deny-warn
-          moon test --target native --deny-warn
+          moon check --target all --deny-warn
+          moon test --target all --deny-warn
 
       - name: CLI smoke test
         run: moon run cmd/moonbit-tradeclass --target native
