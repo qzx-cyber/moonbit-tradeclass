@@ -6,7 +6,11 @@ import {
 }
 
 // Values
+pub fn absolute_change(Double, Double) -> Double
+
 pub fn active_code_state() -> CodeState
+
+pub fn added_codes(VersionDiff) -> Array[String]
 
 pub fn aggregate(AggregationPlan, Array[TradeRecord]) -> Array[AggregatedRecord]
 
@@ -14,11 +18,129 @@ pub fn aggregation_plan(Int, Bool, Bool) -> AggregationPlan
 
 pub fn approximate_confidence() -> MappingConfidence
 
+pub fn benchmark_baseline_total() -> Double
+
+pub fn benchmark_code_checksum() -> Int
+
+pub fn benchmark_concordance() -> Concordance
+
+pub fn benchmark_country_totals() -> Array[(String, Double)]
+
+pub fn benchmark_max_depth() -> Int
+
+pub fn benchmark_max_input_size() -> Int
+
+pub fn benchmark_metric_categories() -> Array[String]
+
+pub fn benchmark_metric_count() -> Int
+
+pub fn benchmark_metrics() -> Array[BenchmarkMetric]
+
+pub fn benchmark_profile_count() -> Int
+
+pub fn benchmark_profile_scenarios() -> Int
+
+pub fn benchmark_profiles() -> Array[BenchmarkProfile]
+
+pub fn benchmark_record_count() -> Int
+
+pub fn benchmark_records() -> Array[BenchmarkRecord]
+
+pub fn benchmark_rule_count() -> Int
+
+pub fn benchmark_rule_specs() -> Array[BenchmarkRuleSpec]
+
+pub fn benchmark_scenario_count() -> Int
+
+pub fn benchmark_scenarios() -> Array[BenchmarkScenario]
+
+pub fn benchmark_threshold_count() -> Int
+
+pub fn benchmark_thresholds() -> Array[BenchmarkThreshold]
+
+pub fn benchmark_total_amount() -> Double
+
+pub fn benchmark_weight_total() -> Double
+
+pub fn benchmark_work_units() -> Int
+
+pub fn benchmark_year_totals() -> Array[(Int, Double)]
+
+pub fn bounded(Double, Double, Double) -> Double
+
+pub fn canonical_code_key(String, String, String) -> String
+
+pub fn catalog_add_product(ClassificationCatalog, ProductCode) -> ClassificationCatalog
+
+pub fn catalog_add_products(ClassificationCatalog, Array[ProductCode]) -> ClassificationCatalog
+
+pub fn catalog_add_system(ClassificationCatalog, ClassificationSystem) -> ClassificationCatalog
+
+pub fn catalog_add_version(ClassificationCatalog, ClassificationVersion) -> ClassificationCatalog
+
+pub fn catalog_children(ClassificationCatalog, String) -> Array[ProductCode]
+
+pub fn catalog_count_by_level(ClassificationCatalog, Int) -> Int
+
+pub fn catalog_count_by_state(ClassificationCatalog, CodeState) -> Int
+
+pub fn catalog_find_product(ClassificationCatalog, String, String, String) -> ProductCode?
+
+pub fn catalog_find_system(ClassificationCatalog, String) -> ClassificationSystem?
+
+pub fn catalog_find_version(ClassificationCatalog, String, String) -> ClassificationVersion?
+
+pub fn catalog_is_valid(ClassificationCatalog) -> Bool
+
+pub fn catalog_levels(ClassificationCatalog) -> Array[Int]
+
+pub fn catalog_live_products(ClassificationCatalog) -> Array[ProductCode]
+
+pub fn catalog_merge(ClassificationCatalog, ClassificationCatalog) -> ClassificationCatalog
+
+pub fn catalog_products_for_version(ClassificationCatalog, String, String) -> Array[ProductCode]
+
+pub fn catalog_quality(ClassificationCatalog) -> Array[QualityFinding]
+
+pub fn catalog_retired_products(ClassificationCatalog) -> Array[ProductCode]
+
+pub fn catalog_snapshot(ClassificationCatalog) -> String
+
+pub fn catalog_system_ids(ClassificationCatalog) -> Array[String]
+
+pub fn catalog_validate(ClassificationCatalog) -> Array[String]
+
+pub fn catalog_version_labels(ClassificationCatalog, String) -> Array[String]
+
+pub fn change_count(VersionDiff, ChangeKind) -> Int
+
+pub fn change_kind_name(ChangeKind) -> String
+
+pub fn changed_codes(VersionDiff) -> Array[String]
+
 pub fn classification_system(String, String) -> ClassificationSystem
 
 pub fn classification_version(ClassificationSystem, String, Int) -> ClassificationVersion
 
+pub fn code_change(String, ChangeKind, ProductCode?, ProductCode?, String) -> CodeChange
+
+pub fn code_depth(String) -> Int
+
+pub fn code_is_prefix(String, String) -> Bool
+
+pub fn code_levels(String) -> Array[String]
+
+pub fn code_parent_at(String, Int) -> String?
+
+pub fn code_prefix(String, Int) -> String
+
 pub fn code_state_is_live(CodeState) -> Bool
+
+pub fn codes_share_prefix(String, String, Int) -> Bool
+
+pub fn combined_quality(ClassificationCatalog, Concordance) -> Array[QualityFinding]
+
+pub fn concentration_label(Array[Double]) -> String
 
 pub fn concordance(Array[ConcordanceRule]) -> Concordance
 
@@ -26,7 +148,37 @@ pub fn concordance_rule(String, Array[MappingTarget], MappingConfidence, String)
 
 pub fn confidence_is_usable(MappingConfidence) -> Bool
 
+pub fn cumulative_sum(Array[Double]) -> Array[Double]
+
+pub fn default_normalization_policy() -> NormalizationPolicy
+
+pub fn diff_change_lines(VersionDiff) -> Array[String]
+
+pub fn diff_change_ratio(VersionDiff, ChangeKind) -> Double
+
+pub fn diff_has_breaking_changes(VersionDiff) -> Bool
+
+pub fn diff_level_counts(VersionDiff, ChangeKind) -> Array[(Int, Int)]
+
+pub fn diff_summary(VersionDiff) -> String
+
+pub fn diff_versions(Array[ProductCode], Array[ProductCode], ClassificationVersion, ClassificationVersion) -> VersionDiff
+
+pub fn difference(Array[Double]) -> Array[Double]
+
+pub fn empty_catalog() -> ClassificationCatalog
+
+pub fn empty_numeric_summary() -> NumericSummary
+
+pub fn entropy(Array[Double]) -> Double
+
 pub fn exact_confidence() -> MappingConfidence
+
+pub fn frequency(Array[String]) -> Array[(String, Int)]
+
+pub fn group_sum(Array[(String, Double)]) -> Array[(String, Double)]
+
+pub fn herfindahl_index(Array[Double]) -> Double
 
 pub fn map_code(Concordance, String) -> MappingResult
 
@@ -34,17 +186,91 @@ pub fn mapping_result(String, Array[MappingTarget], MappingConfidence, String) -
 
 pub fn mapping_target(String, Double) -> MappingTarget raise
 
+pub fn mean(Array[Double]) -> Double
+
 pub fn merged_code_state() -> CodeState
+
+pub fn moving_mean(Array[Double], Int) -> Array[Double]
+
+pub fn moving_sum(Array[Double], Int) -> Array[Double]
+
+pub fn normalization_is_valid(NormalizationReport) -> Bool
+
+pub fn normalization_issue_count(NormalizationReport) -> Int
+
+pub fn normalize_code(String, NormalizationPolicy) -> NormalizationReport
+
+pub fn normalize_code_or_empty(String) -> String
+
+pub fn normalize_codes(Array[String], NormalizationPolicy) -> Array[NormalizationReport]
+
+pub fn normalize_weights(Array[Double]) -> Array[Double]
 
 pub fn product_code(ClassificationVersion, String, String, Int, CodeState, String?) -> ProductCode
 
+pub fn proportion(Double, Double) -> Double?
+
+pub fn quality_code_name(QualityCode) -> String
+
+pub fn quality_error_count(QualitySummary) -> Int
+
+pub fn quality_finding(QualitySeverity, QualityCode, String, String) -> QualityFinding
+
+pub fn quality_findings_for(QualitySummary, String) -> Array[QualityFinding]
+
+pub fn quality_has_errors(QualitySummary) -> Bool
+
+pub fn quality_report(QualitySummary) -> String
+
+pub fn quality_report_lines(QualitySummary) -> Array[String]
+
+pub fn quality_score(QualitySummary) -> Double
+
+pub fn quality_severity_name(QualitySeverity) -> String
+
+pub fn quality_summary(Array[ConcordanceRule]) -> QualitySummary
+
+pub fn quality_warning_count(QualitySummary) -> Int
+
+pub fn quantile(Array[Double], Double) -> Double?
+
+pub fn quantile_band(Array[Double]) -> QuantileBand?
+
+pub fn relative_change(Double, Double) -> Double?
+
+pub fn removed_codes(VersionDiff) -> Array[String]
+
+pub fn retained_codes(VersionDiff) -> Array[String]
+
 pub fn retired_code_state() -> CodeState
 
+pub fn share_table(Array[(String, Double)]) -> Array[(String, Double)]
+
+pub fn sort_codes_lexical(Array[String]) -> Array[String]
+
+pub fn sorted_numbers(Array[Double]) -> Array[Double]
+
 pub fn split_code_state() -> CodeState
+
+pub fn strict_numeric_policy() -> NormalizationPolicy
+
+pub fn sum(Array[Double]) -> Double
+
+pub fn summarize(Array[Double]) -> NumericSummary
+
+pub fn summarize_optional(Array[Double?]) -> NumericSummary
 
 pub fn trade_record(String, Int, String, Double) -> TradeRecord
 
 pub fn unmappable_confidence() -> MappingConfidence
+
+pub fn weight_total(Array[WeightedObservation]) -> Double
+
+pub fn weighted_mean(Array[WeightedObservation]) -> Double
+
+pub fn weighted_observation(String, Double, Double) -> WeightedObservation
+
+pub fn weighted_sum(Array[WeightedObservation]) -> Double
 
 // Errors
 
@@ -62,6 +288,63 @@ pub struct AggregationPlan {
   include_year : Bool
 } derive(Eq, @debug.Debug)
 
+pub struct BenchmarkMetric {
+  name : String
+  baseline : Double
+  tolerance : Double
+  category : String
+} derive(Eq, @debug.Debug)
+
+pub struct BenchmarkProfile {
+  name : String
+  description : String
+  scenario_count : Int
+  expected_quality : Double
+} derive(Eq, @debug.Debug)
+
+pub struct BenchmarkRecord {
+  code : String
+  country : String
+  year : Int
+  amount : Double
+  expected_targets : Int
+} derive(Eq, @debug.Debug)
+
+pub struct BenchmarkRuleSpec {
+  source : String
+  left : String
+  right : String
+  left_weight : Double
+} derive(Eq, @debug.Debug)
+
+pub struct BenchmarkScenario {
+  id : String
+  source : String
+  fanout : Int
+  depth : Int
+  weight : Double
+} derive(Eq, @debug.Debug)
+
+pub struct BenchmarkThreshold {
+  name : String
+  input_size : Int
+  expected_millis : Int
+  max_memory_kb : Int
+} derive(Eq, @debug.Debug)
+
+pub enum ChangeKind {
+  Added
+  Removed
+  Retained
+  Changed
+} derive(Eq, @debug.Debug)
+
+pub struct ClassificationCatalog {
+  systems : Array[ClassificationSystem]
+  versions : Array[ClassificationVersion]
+  products : Array[ProductCode]
+} derive(@debug.Debug)
+
 pub struct ClassificationSystem {
   id : String
   name : String
@@ -71,6 +354,14 @@ pub struct ClassificationVersion {
   system : ClassificationSystem
   label : String
   year : Int
+} derive(Eq, @debug.Debug)
+
+pub struct CodeChange {
+  code : String
+  kind : ChangeKind
+  before : ProductCode?
+  after : ProductCode?
+  detail : String
 } derive(Eq, @debug.Debug)
 
 pub enum CodeState {
@@ -109,6 +400,41 @@ pub struct MappingTarget {
   weight : Double
 } derive(Eq, @debug.Debug)
 
+pub enum NormalizationIssue {
+  EmptyInput
+  WhitespaceOnly
+  InvalidCharacter
+  NonCanonicalWidth
+  UnexpectedSeparator
+} derive(Eq, @debug.Debug)
+
+pub struct NormalizationPolicy {
+  trim : Bool
+  uppercase : Bool
+  remove_spaces : Bool
+  remove_dashes : Bool
+  remove_dots : Bool
+  allow_letters : Bool
+  allow_digits : Bool
+} derive(Eq, @debug.Debug)
+
+pub struct NormalizationReport {
+  original : String
+  normalized : String
+  issues : Array[NormalizationIssue]
+  changed : Bool
+} derive(Eq, @debug.Debug)
+
+pub struct NumericSummary {
+  count : Int
+  missing : Int
+  total : Double
+  minimum : Double?
+  maximum : Double?
+  mean : Double
+  variance : Double
+} derive(Eq, @debug.Debug)
+
 pub struct ProductCode {
   version : ClassificationVersion
   code : String
@@ -118,6 +444,44 @@ pub struct ProductCode {
   parent : String?
 } derive(Eq, @debug.Debug)
 
+pub enum QualityCode {
+  EmptySource
+  EmptyTarget
+  InvalidWeight
+  WeightNotNormalized
+  DuplicateRule
+  DuplicateTarget
+  MissingReason
+  RetiredProduct
+  MissingParent
+  Cycle
+} derive(Eq, @debug.Debug)
+
+pub struct QualityFinding {
+  severity : QualitySeverity
+  code : QualityCode
+  subject : String
+  message : String
+} derive(Eq, @debug.Debug)
+
+pub enum QualitySeverity {
+  Info
+  Warning
+  Error
+} derive(Eq, @debug.Debug)
+
+pub struct QualitySummary {
+  inspected_rules : Int
+  inspected_targets : Int
+  findings : Array[QualityFinding]
+} derive(@debug.Debug)
+
+pub struct QuantileBand {
+  lower : Double
+  median : Double
+  upper : Double
+} derive(Eq, @debug.Debug)
+
 pub struct TradeRecord {
   country : String
   year : Int
@@ -125,7 +489,18 @@ pub struct TradeRecord {
   amount : Double
 } derive(Eq, @debug.Debug)
 
+pub struct VersionDiff {
+  from : ClassificationVersion
+  to : ClassificationVersion
+  changes : Array[CodeChange]
+} derive(@debug.Debug)
+
+pub struct WeightedObservation {
+  key : String
+  value : Double
+  weight : Double
+} derive(Eq, @debug.Debug)
+
 // Type aliases
 
 // Traits
-
