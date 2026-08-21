@@ -10,6 +10,8 @@ pub fn absolute_change(Double, Double) -> Double
 
 pub fn active_code_state() -> CodeState
 
+pub fn added_change_kind() -> ChangeKind
+
 pub fn added_codes(VersionDiff) -> Array[String]
 
 pub fn aggregate(AggregationPlan, Array[TradeRecord]) -> Array[AggregatedRecord]
@@ -115,6 +117,8 @@ pub fn catalog_version_labels(ClassificationCatalog, String) -> Array[String]
 pub fn change_count(VersionDiff, ChangeKind) -> Int
 
 pub fn change_kind_name(ChangeKind) -> String
+
+pub fn changed_change_kind() -> ChangeKind
 
 pub fn changed_codes(VersionDiff) -> Array[String]
 
@@ -238,6 +242,8 @@ pub fn quantile_band(Array[Double]) -> QuantileBand?
 
 pub fn relative_change(Double, Double) -> Double?
 
+pub fn removed_change_kind() -> ChangeKind
+
 pub fn removed_codes(VersionDiff) -> Array[String]
 
 pub fn retained_codes(VersionDiff) -> Array[String]
@@ -333,10 +339,10 @@ pub struct BenchmarkThreshold {
 } derive(Eq, @debug.Debug)
 
 pub enum ChangeKind {
-  Added
-  Removed
-  Retained
-  Changed
+  AddedCode
+  RemovedCode
+  RetainedCode
+  ChangedCode
 } derive(Eq, @debug.Debug)
 
 pub struct ClassificationCatalog {
