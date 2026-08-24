@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2 - 2026-08-24
+
+- Added deterministic CSV parsing, projection, escaping, and export helpers.
+- Added production-oriented trade import validation, filtering, pagination, and reports.
+- Added configurable data-quality and concordance-rule audits with Markdown and CSV output.
+
 ## 0.2.1 - 2026-08-24
 
 - Upgraded local and CI validation to require Moonc `>= v0.10.9`.

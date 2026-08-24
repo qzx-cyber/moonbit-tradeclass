@@ -20,6 +20,54 @@ pub fn aggregation_plan(Int, Bool, Bool) -> AggregationPlan
 
 pub fn approximate_confidence() -> MappingConfidence
 
+pub fn audit_accepted_rows(AuditReport) -> Int
+
+pub fn audit_checked_rows(AuditReport) -> Int
+
+pub fn audit_combine(AuditReport, AuditReport) -> AuditReport
+
+pub fn audit_country_coverage(TradeImportReport) -> Int
+
+pub fn audit_duplicate_count(TradeImportReport) -> Int
+
+pub fn audit_error_count(AuditReport) -> Int
+
+pub fn audit_finding(AuditSeverity, AuditCode, String, Int) -> AuditFinding
+
+pub fn audit_finding_count(AuditReport) -> Int
+
+pub fn audit_finding_lines(AuditReport) -> Array[String]
+
+pub fn audit_findings(AuditReport) -> Array[AuditFinding]
+
+pub fn audit_has_errors(AuditReport) -> Bool
+
+pub fn audit_is_ready(AuditReport, Double) -> Bool
+
+pub fn audit_policy(Int, Double, Int, Int, Int, Bool, Bool) -> AuditPolicy
+
+pub fn audit_records(Array[TradeRecord], AuditPolicy) -> AuditReport
+
+pub fn audit_report_csv(AuditReport) -> String
+
+pub fn audit_report_markdown(AuditReport) -> String
+
+pub fn audit_rule_coverage(Array[String], Concordance) -> AuditReport
+
+pub fn audit_rule_weight(ConcordanceRule) -> Double
+
+pub fn audit_rules(Array[ConcordanceRule], AuditPolicy) -> AuditReport
+
+pub fn audit_score_value(AuditReport) -> Double
+
+pub fn audit_summary(AuditReport) -> String
+
+pub fn audit_trade_report(TradeImportReport, AuditPolicy) -> AuditReport
+
+pub fn audit_warning_count(AuditReport) -> Int
+
+pub fn audit_year_coverage(TradeImportReport) -> Int
+
 pub fn benchmark_baseline_total() -> Double
 
 pub fn benchmark_code_checksum() -> Int
@@ -152,9 +200,49 @@ pub fn concordance_rule(String, Array[MappingTarget], MappingConfidence, String)
 
 pub fn confidence_is_usable(MappingConfidence) -> Bool
 
+pub fn csv_cell(CsvTable, Int, Int) -> String?
+
+pub fn csv_column(CsvTable, String) -> Array[String]
+
+pub fn csv_default_options() -> CsvOptions
+
+pub fn csv_header_index(CsvTable, String) -> Int?
+
+pub fn csv_headers(CsvTable) -> Array[String]
+
+pub fn csv_is_valid(CsvParseResult) -> Bool
+
+pub fn csv_issue(Int, Int, String) -> CsvIssue
+
+pub fn csv_issue_count(CsvParseResult) -> Int
+
+pub fn csv_options(Char, Char, Bool, Bool) -> CsvOptions
+
+pub fn csv_parse(String, CsvOptions) -> CsvParseResult
+
+pub fn csv_render(CsvTable, CsvOptions) -> String
+
+pub fn csv_render_row(Array[String], CsvOptions) -> String
+
+pub fn csv_require_columns(CsvTable, Array[String]) -> Array[CsvIssue]
+
+pub fn csv_rows(CsvTable) -> Array[Array[String]]
+
+pub fn csv_select_columns(CsvTable, Array[String]) -> CsvParseResult
+
+pub fn csv_table(Array[String], Array[Array[String]]) -> CsvTable
+
+pub fn csv_table_column_count(CsvTable) -> Int
+
+pub fn csv_table_row_count(CsvTable) -> Int
+
 pub fn cumulative_sum(Array[Double]) -> Array[Double]
 
+pub fn default_audit_policy() -> AuditPolicy
+
 pub fn default_normalization_policy() -> NormalizationPolicy
+
+pub fn default_trade_import_options() -> TradeImportOptions
 
 pub fn diff_change_lines(VersionDiff) -> Array[String]
 
@@ -174,6 +262,8 @@ pub fn empty_catalog() -> ClassificationCatalog
 
 pub fn empty_numeric_summary() -> NumericSummary
 
+pub fn empty_trade_query() -> TradeQuery
+
 pub fn entropy(Array[Double]) -> Double
 
 pub fn exact_confidence() -> MappingConfidence
@@ -183,6 +273,46 @@ pub fn frequency(Array[String]) -> Array[(String, Int)]
 pub fn group_sum(Array[(String, Double)]) -> Array[(String, Double)]
 
 pub fn herfindahl_index(Array[Double]) -> Double
+
+pub fn import_acceptance_ratio(TradeImportReport) -> Double
+
+pub fn import_accepted_count(TradeImportReport) -> Int
+
+pub fn import_country_totals(TradeImportReport) -> Array[(String, Double)]
+
+pub fn import_input_row_count(TradeImportReport) -> Int
+
+pub fn import_is_successful(TradeImportReport) -> Bool
+
+pub fn import_issue(Int, String, ImportIssueKind, String) -> ImportIssue
+
+pub fn import_issue_count(TradeImportReport) -> Int
+
+pub fn import_issue_lines(TradeImportReport) -> Array[String]
+
+pub fn import_issues(TradeImportReport) -> Array[ImportIssue]
+
+pub fn import_max_amount(TradeImportReport) -> Double?
+
+pub fn import_mean_amount(TradeImportReport) -> Double?
+
+pub fn import_min_amount(TradeImportReport) -> Double?
+
+pub fn import_quality_gate(TradeImportReport, Int, Double) -> Bool
+
+pub fn import_records(TradeImportReport) -> Array[TradeRecord]
+
+pub fn import_rejected_count(TradeImportReport) -> Int
+
+pub fn import_report_markdown(TradeImportReport) -> String
+
+pub fn import_total_amount(TradeImportReport) -> Double
+
+pub fn import_trade_csv(String, TradeImportOptions) -> TradeImportReport
+
+pub fn import_trade_table(CsvTable, TradeImportOptions) -> TradeImportReport
+
+pub fn import_year_totals(TradeImportReport) -> Array[(Int, Double)]
 
 pub fn map_code(Concordance, String) -> MappingResult
 
@@ -240,11 +370,31 @@ pub fn quantile(Array[Double], Double) -> Double?
 
 pub fn quantile_band(Array[Double]) -> QuantileBand?
 
+pub fn query_country_counts(Array[TradeRecord]) -> Array[(String, Int)]
+
+pub fn query_page(Array[TradeRecord], Int, Int) -> Array[TradeRecord]
+
+pub fn query_records(Array[TradeRecord], TradeQuery) -> Array[TradeRecord]
+
+pub fn query_report(TradeImportReport, TradeQuery) -> Array[TradeRecord]
+
+pub fn query_sorted_by_amount(Array[TradeRecord], Bool) -> Array[TradeRecord]
+
+pub fn query_sorted_by_code(Array[TradeRecord]) -> Array[TradeRecord]
+
+pub fn query_total_amount(Array[TradeRecord]) -> Double
+
+pub fn query_year_counts(Array[TradeRecord]) -> Array[(Int, Int)]
+
+pub fn records_to_csv(Array[TradeRecord]) -> CsvTable
+
 pub fn relative_change(Double, Double) -> Double?
 
 pub fn removed_change_kind() -> ChangeKind
 
 pub fn removed_codes(VersionDiff) -> Array[String]
+
+pub fn report_to_csv(TradeImportReport) -> String
 
 pub fn retained_codes(VersionDiff) -> Array[String]
 
@@ -265,6 +415,10 @@ pub fn sum(Array[Double]) -> Double
 pub fn summarize(Array[Double]) -> NumericSummary
 
 pub fn summarize_optional(Array[Double?]) -> NumericSummary
+
+pub fn trade_import_options(String, String, String, String, Bool, Int, Int, Bool) -> TradeImportOptions
+
+pub fn trade_query(String?, Int?, String?, Double?, Double?, Int) -> TradeQuery
 
 pub fn trade_record(String, Int, String, Double) -> TradeRecord
 
@@ -292,6 +446,55 @@ pub struct AggregationPlan {
   level : Int
   include_country : Bool
   include_year : Bool
+} derive(Eq, @debug.Debug)
+
+pub enum AuditCode {
+  EmptyDataset
+  RejectedInput
+  LowAcceptance
+  InvalidCodeRows
+  InvalidCountryRows
+  InvalidYearRows
+  InvalidAmountRows
+  NegativeAmountRows
+  DuplicateRecords
+  CountryCoverage
+  YearCoverage
+  EmptyRule
+  UnbalancedRule
+  DuplicateRuleSource
+  UnmappableCode
+  HealthyDataset
+} derive(Eq, @debug.Debug)
+
+pub struct AuditFinding {
+  severity : AuditSeverity
+  code : AuditCode
+  message : String
+  mut count : Int
+} derive(Eq, @debug.Debug)
+
+pub struct AuditPolicy {
+  maximum_rejected : Int
+  minimum_acceptance_ratio : Double
+  minimum_year : Int
+  maximum_year : Int
+  minimum_country_count : Int
+  require_nonnegative_amounts : Bool
+  require_balanced_rules : Bool
+} derive(Eq, @debug.Debug)
+
+pub struct AuditReport {
+  findings : Array[AuditFinding]
+  checked_rows : Int
+  accepted_rows : Int
+  score : Double
+} derive(Eq, @debug.Debug)
+
+pub enum AuditSeverity {
+  AuditInfo
+  AuditWarning
+  AuditError
 } derive(Eq, @debug.Debug)
 
 pub struct BenchmarkMetric {
@@ -386,6 +589,49 @@ pub struct ConcordanceRule {
   to : Array[MappingTarget]
   confidence : MappingConfidence
   reason : String
+} derive(Eq, @debug.Debug)
+
+pub struct CsvIssue {
+  row : Int
+  column : Int
+  message : String
+} derive(Eq, @debug.Debug)
+
+pub struct CsvOptions {
+  delimiter : Char
+  quote : Char
+  trim_unquoted : Bool
+  skip_blank_rows : Bool
+} derive(Eq, @debug.Debug)
+
+pub enum CsvParseResult {
+  CsvOk(CsvTable)
+  CsvInvalid(Array[CsvIssue])
+} derive(Eq, @debug.Debug)
+
+pub struct CsvTable {
+  headers : Array[String]
+  rows : Array[Array[String]]
+} derive(Eq, @debug.Debug)
+
+pub struct ImportIssue {
+  row : Int
+  field : String
+  kind : ImportIssueKind
+  message : String
+} derive(Eq, @debug.Debug)
+
+pub enum ImportIssueKind {
+  MissingField
+  InvalidCode
+  InvalidCountry
+  InvalidYear
+  InvalidAmount
+  NegativeAmount
+  DuplicateRecord
+  InvalidWeight
+  InvalidConfidence
+  InvalidRule
 } derive(Eq, @debug.Debug)
 
 pub enum MappingConfidence {
@@ -486,6 +732,34 @@ pub struct QuantileBand {
   lower : Double
   median : Double
   upper : Double
+} derive(Eq, @debug.Debug)
+
+pub struct TradeImportOptions {
+  code_column : String
+  country_column : String
+  year_column : String
+  amount_column : String
+  allow_negative_amount : Bool
+  min_year : Int
+  max_year : Int
+  reject_duplicates : Bool
+} derive(Eq, @debug.Debug)
+
+pub struct TradeImportReport {
+  records : Array[TradeRecord]
+  issues : Array[ImportIssue]
+  accepted : Int
+  rejected : Int
+  input_rows : Int
+} derive(Eq, @debug.Debug)
+
+pub struct TradeQuery {
+  country : String?
+  year : Int?
+  code_prefix : String?
+  minimum_amount : Double?
+  maximum_amount : Double?
+  limit : Int
 } derive(Eq, @debug.Debug)
 
 pub struct TradeRecord {
