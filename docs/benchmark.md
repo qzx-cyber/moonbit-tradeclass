@@ -1,10 +1,12 @@
 # Benchmark notes
 
-This repository ships a deterministic, project-owned workload so benchmark
-results can be reproduced without downloading a proprietary classification
-database. The workload contains 1,000 trade records, 1,600 weighted rules,
-2,000 mapping scenarios, 1,100 metric definitions, 700 threshold definitions,
-and 500 profiles.
+This repository ships a deterministic, project-owned synthetic workload so
+benchmark results can be reproduced without downloading a proprietary
+classification database. `src/benchmark.mbt` generates 1,000 trade records,
+1,600 weighted rules, 2,000 mapping scenarios, 1,100 metric definitions, 700
+threshold definitions, and 500 profiles at runtime. The generator is source
+code and keeps the workload parameters deterministic, inspectable, and
+reproducible across targets.
 
 ## Command
 
@@ -21,12 +23,15 @@ Run the native CLI from a warm build:
 
 ## Recorded baseline
 
-On 2026-08-22, using Moon `0.1.20260807` / Moonc `0.10.7` on the local
-Windows development environment, five warm runs took 158.02 ms, 148.79 ms,
-154.94 ms, 159.67 ms and 168.86 ms. The arithmetic mean was 158.06 ms and
-the observed range was 20.07 ms. These numbers include process startup and
-native CLI execution, so they are a smoke-test baseline rather than a claim
-about production hardware.
+On 2026-08-24, using Moon `0.1.20260824` / Moonc `v0.10.10` on the local
+Windows development environment, five warm native CLI runs took 124.78 ms,
+117.12 ms, 112.76 ms, 107.35 ms and 116.91 ms. The arithmetic mean was
+115.78 ms and the observed range was 17.43 ms. These numbers include process
+startup and native CLI execution, so they are a smoke-test baseline rather
+than a claim about production hardware.
+
+The repository CI enforces Moonc `>= v0.10.9`. Benchmark numbers must include
+the toolchain, target, host and warm/cold procedure so they can be reproduced.
 
 The CLI also reports the workload cardinalities and 60,960 mapping work units.
 To compare another machine, keep the toolchain, target, input cardinalities

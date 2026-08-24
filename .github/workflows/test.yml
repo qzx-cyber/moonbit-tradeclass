@@ -34,6 +34,7 @@ jobs:
           echo "$HOME/.moon-latest/bin" >> "$GITHUB_PATH"
           export PATH="$HOME/.moon/bin:$HOME/.moon-latest/bin:$PATH"
           moon version --all
+          moonc -v | grep -Eq 'v0\.10\.(9|[1-9][0-9])' || { echo 'Moonc >= v0.10.9 is required'; exit 1; }
 
       - name: Install MoonBit stable (Windows)
         if: runner.os == 'Windows'
@@ -43,6 +44,7 @@ jobs:
           @("$HOME/.moon/bin", "$HOME/.moon-latest/bin", "C:\Users\runneradmin\.moon\bin", "C:\Users\runneradmin\.moon-latest\bin") | Out-File -FilePath $env:GITHUB_PATH -Append
           $env:Path = "$HOME\.moon\bin;$HOME\.moon-latest\bin;C:\Users\runneradmin\.moon\bin;C:\Users\runneradmin\.moon-latest\bin;$env:Path"
           moon version --all
+          if ((moonc -v | Out-String) -notmatch 'v0\.10\.(9|[1-9][0-9])') { throw 'Moonc >= v0.10.9 is required' }
 
       - name: Format
         run: moon fmt --check

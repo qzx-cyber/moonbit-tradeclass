@@ -55,7 +55,7 @@ aggregate   贸易记录确定性聚合
 analytics   描述统计、份额、变化和窗口计算
 diff        版本代码新增、删除和元数据变更
 quality     规则、目录和权重质量审计
-benchmark_* 可复现的基准记录、场景、规则和阈值
+benchmark.mbt 可复现的合成基准生成器
 cmd/        可执行演示
 ```
 
@@ -63,7 +63,7 @@ cmd/        可执行演示
 
 ## 基准
 
-仓库内的 `benchmark_*` 模块包含 1,000 条记录、2,000 个映射场景、1,600 条带权规则和 700 个阈值配置。它们是项目自有合成工作负载，目的是让每次 CI 和本地验收使用同一输入；它们不包含也不替代 HS、SITC 等官方完整数据。
+仓库内的 `benchmark.mbt` 生成 1,000 条记录、2,000 个映射场景、1,600 条带权规则和 700 个阈值配置。它们是项目自有、可复现的合成工作负载，目的是让每次 CI 和本地运行使用同一输入；它们不包含也不替代 HS、SITC 等官方完整数据。
 
 本地可用以下命令测量真实运行时间，并把结果记录到发布说明或 CI 工件中：
 
@@ -73,7 +73,7 @@ Measure-Command { moon run cmd/moonbit-tradeclass --target native }
 
 ## 测试
 
-测试覆盖模型构造、负权重、空规则、拆分、桥接、合并、循环、缺失映射、目录一致性、规范化边界、版本差异、聚合和基准数据不变量。边界语料库包含 1,400 组表驱动输入。
+测试覆盖模型构造、负权重、空规则、拆分、桥接、合并、循环、缺失映射、目录一致性、规范化边界、版本差异、聚合和基准数据不变量。规范化边界测试使用参数化输入覆盖多种空白、分隔符、大小写和层级长度。
 
 ```text
 moon fmt --check
@@ -86,7 +86,7 @@ moon test --target native --deny-warn
 
 ## CI
 
-GitHub Actions 使用 MoonBit stable 安装器，并执行格式检查、公共接口差异检查、全目标类型检查和测试，以及 CLI native smoke test。工作流文件位于 `.github/workflows/test.yml`，每次 push 和 pull request 自动运行。
+GitHub Actions 使用 MoonBit stable 安装器，并强制 Moonc `>= v0.10.9`，执行格式检查、公共接口差异检查、全目标类型检查和测试，以及 CLI native smoke test。工作流文件位于 `.github/workflows/test.yml`，每次 push 和 pull request 自动运行。
 
 ## 数据与许可证边界
 

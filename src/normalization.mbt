@@ -124,7 +124,7 @@ pub fn normalize_code(
   if source == "" && input != "" {
     issues.push(WhitespaceOnly)
   }
-  let output : StringBuilder = StringBuilder::new()
+  let output : StringBuilder = StringBuilder()
   for ch in source {
     if ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r' {
       if !policy.remove_spaces {
@@ -207,7 +207,7 @@ pub fn code_prefix(code : String, length : Int) -> String {
   if length <= 0 {
     return ""
   }
-  let result : StringBuilder = StringBuilder::new()
+  let result : StringBuilder = StringBuilder()
   let mut count = 0
   for ch in code {
     if count >= length {

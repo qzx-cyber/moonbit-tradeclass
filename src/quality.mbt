@@ -239,7 +239,7 @@ pub fn quality_report_lines(summary : QualitySummary) -> Array[String] {
 
 ///|
 pub fn quality_report(summary : QualitySummary) -> String {
-  let builder = StringBuilder::new()
+  let builder = StringBuilder()
   for line in quality_report_lines(summary) {
     builder.write_string(line)
     builder.write_char('\n')
